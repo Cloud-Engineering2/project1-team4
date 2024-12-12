@@ -1,0 +1,66 @@
+package infra.entity;
+
+import java.util.Objects;
+
+import infra.common.utils.UserRoleTypeAttributeConverter;
+import infra.entity.constant.UserRoleType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString(callSuper = true)
+@Entity
+public class User extends AuditingFields {
+	
+	@Id
+	@Column(name = "uid")
+    private Long uid;
+    
+	@Column(length = 20)
+	private String username;
+	
+	@Column(length = 20)
+    private String password;
+
+    private String email;
+    
+    @Column
+	private Long businessNum;
+    
+	@Column(name = "role_type", columnDefinition = "VARCHAR(50)")
+    @Convert(converter = UserRoleTypeAttributeConverter.class)
+    private UserRoleType userRoleType;
+    
+    protected User() {}
+    
+	private User(Long uid, String username, String password, String email, UserRoleType userRoleType, Long businessNum) {
+		this.uid = uid;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.userRoleType = userRoleType;
+		this.businessNum = businessNum;
+	}
+	
+	public static User of(Long userId, String username, String password, String email, UserRoleType userRoleType, Long businessNum) {
+		return new User(userId, username, password, email, userRoleType, businessNum);
+	}
+	
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User that)) return false;
+        return this.getUid() != null && this.getUid().equals(that.getUid());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getUid());
+    }
+}

@@ -11,24 +11,22 @@ import lombok.ToString;
 @Getter
 public class UserRequest {
 	
-    private Long uid;
-	private String username;
-    private String password;
+    private String uid;
+	private String password;
     private String email;
     private UserRoleType userRoleType;
     private Long businessNum;
     
-    public static UserRequest of(Long uid, String username, String password, String email,UserRoleType userRoleType) {
-    	return new UserRequest(uid, username, password, email, userRoleType, null); 
+    public static UserRequest of(String uid, String password, String email,UserRoleType userRoleType) {
+    	return new UserRequest(uid, password, email, userRoleType, null); 
     }
     
-    public static UserRequest of(Long uid, String username, String password, String email, UserRoleType userRoleType, Long businessNum) {
-    	return new UserRequest(uid, username, password, email, userRoleType, businessNum); 
+    public static UserRequest of(String uid, String password, String email, UserRoleType userRoleType, Long businessNum) {
+    	return new UserRequest(uid, password, email, userRoleType, businessNum); 
     }
     
     public UserDto toDto(UserRoleType userRole) {
     	return UserDto.of(uid, 
-    					  username, 
     					  password, 
     					  email, 
     					  userRole);

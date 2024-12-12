@@ -1,16 +1,10 @@
 package infra.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import infra.dto.UserDto;
-import infra.dto.security.BoardDetails;
-import infra.entity.constant.UserRoleType;
 import infra.service.RoomService;
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +20,14 @@ public class RoomController {
 	
 	private final RoomService roomService;
 	
+	
+	
+//    @GetMapping
+//    public String getAllRooms(ModelMap model) {
+//        model.addAttribute("rooms", roomService.getAllRooms());  // Assuming `getAllRooms()` retrieves room data
+//        return "room/list";  // JSP or Thymeleaf template to display rooms
+//    }
+
 	
 
 }

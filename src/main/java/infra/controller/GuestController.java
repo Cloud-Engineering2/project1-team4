@@ -42,72 +42,41 @@ public class GuestController {
 	private final ReservationService reservationService;
 	private final PagingService pagingService;
 	
-	@GetMapping
-	public String getReservations(
-			
-	) 
-	{
-
-		
-		
-		return "";
+	@GetMapping("/reservations")
+	public String getReservations() {
+	    return "";
 	}
-	
-	@GetMapping("")
-	public String getReservationDetail(
-			
-	) {
 
-		
-		return "";
+	@GetMapping("/reservation/{id}")
+	public String getReservationDetail(@PathVariable Long id) {
+	    return "";
 	}
-	
-	@GetMapping("")
+
+	@GetMapping("/reservation/form")
 	public String reservationFormPage() {
-		
-		return "";
+	    return "";
 	}
-	
-	@PostMapping("")
-	public String createReservation(
-		
-	) {
 
+	@PostMapping("/reservation")
+	public String createReservation() {
+	    return "";
+	}
 
-		
-		return "";
+	@GetMapping("/reservation/update/{id}")
+	public String updateReservationForm(@PathVariable Long id) {
+	    return "";
 	}
-	
 
-	
-	@GetMapping("")
-	public String updateReservationform(
-			
-	) {
-		
-		
-		return "";
+	@PostMapping("/reservation/update/{id}")
+	public String updateReservation(@PathVariable Long id) {
+	    return "";
 	}
-	
-	
-	@PostMapping("")
-	public String updateReservation(
-			
-			
-	) {
-		
-		
-		return "";
+
+	@PostMapping("/reservation/delete/{id}")
+	public String deleteReservation(@PathVariable Long id) {
+	    return "";
 	}
-	
-	
-	@PostMapping("")
-    public String deleteReservation(
-    		
-    ) {
-		
-        return "";
-    }
+
 	
 	
 	

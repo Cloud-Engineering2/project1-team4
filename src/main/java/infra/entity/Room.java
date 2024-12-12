@@ -19,12 +19,12 @@ import lombok.ToString;
 public class Room extends AuditingFields {
 	
 	@Id
-	@Column(name = "id")
+	@Column(name = "mid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long mid;
 	
 	@ManyToOne
-    @JoinColumn(name = "host_id", referencedColumnName = "id")
+    @JoinColumn(name = "hid", referencedColumnName = "mid")
     private User user;
 	
 	@Setter
@@ -56,9 +56,9 @@ public class Room extends AuditingFields {
     protected Room() {}
     
     
-	private Room(Long id, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
+	private Room(Long mid, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
 			String addr3, String content, Boolean isAccepted) {
-		this.id = id;
+		this.mid = mid;
 		this.user = user;
 		this.name = name;
 		this.maxPeople = maxPeople;
@@ -69,26 +69,27 @@ public class Room extends AuditingFields {
 		this.content = content;
 		this.isAccepted = isAccepted;
 	}
+	
+	
     
-    public static Room of(Long id, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
+    public static Room of(Long mid, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
 			String addr3, String content, Boolean isAccepted) {
-    	return new Room(id, user, name, maxPeople, price, addr1, addr2,
-    		 addr3, content, isAccepted);
+    	return new Room(mid, user, name, maxPeople, price, addr1, addr2, addr3, content, isAccepted);
     }
     
     
-    
+  
     
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Room that)) return false;
-        return this.getId() != null && this.getId().equals(that.getId());
+        return this.getMid() != null && this.getMid().equals(that.getMid());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getId());
+        return Objects.hash(this.getMid());
     }
 
 

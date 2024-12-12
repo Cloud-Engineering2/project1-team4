@@ -14,9 +14,8 @@ import lombok.ToString;
 @Getter
 @Setter
 public class UserDto {
-    private Long uid;
-	private String username;
-    private String password;
+    private String uid;
+	private String password;
     private String email;
     private UserRoleType userRoleType;
     private Long businessNum;
@@ -24,19 +23,19 @@ public class UserDto {
     private LocalDateTime modifiedDate;
     
     
-    public static UserDto of(Long uid, String username, String password, String email, UserRoleType userRoleType) {
-    	return UserDto.of(uid, username, password, email, userRoleType, null, null, null);
+    public static UserDto of(String uid,  String password, String email, UserRoleType userRoleType) {
+    	return UserDto.of(uid, password, email, userRoleType, null, null, null);
     }
     
-    public static UserDto of(Long uid, String username, String password, String email, UserRoleType userRoleType,
+    public static UserDto of(String uid, String password, String email, UserRoleType userRoleType,
     		Long businessNum, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-    	return new UserDto(uid, username, password, email, userRoleType, businessNum, createdDate, modifiedDate);
+    	return new UserDto(uid, password, email, userRoleType, businessNum, createdDate, modifiedDate);
     }
 
+    
     public static UserDto from(User user) {
     	return new UserDto(
 	    					user.getUid(),
-	    					user.getUsername(),
 	    					user.getPassword(),
 	    					user.getEmail(),
 	    					user.getUserRoleType(),
@@ -48,8 +47,7 @@ public class UserDto {
     
     public User toEntity() {
     	return User.of(
-						uid, 
-						username, 
+						uid,
 						password, 
 						email, 
 						userRoleType,

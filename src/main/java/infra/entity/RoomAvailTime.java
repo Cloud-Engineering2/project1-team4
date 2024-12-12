@@ -14,8 +14,12 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Entity
 public class RoomAvailTime {
+	
+	@Id
+	private Long id;
+	
 	@OneToOne
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "mid", nullable = false)
     private Room room;
 
    

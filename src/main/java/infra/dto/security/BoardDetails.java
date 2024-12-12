@@ -16,16 +16,15 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 public class BoardDetails implements UserDetails{
-	private Long uid;
-	private String username;
+	private String uid;
 	private String password;
 	private String email;
 	private UserRoleType userRoleType;
 	
-	public static BoardDetails of(Long uid, String username, String password, String email, UserRoleType userRoleType) {
+	public static BoardDetails of(String uid, String username, String password, String email, UserRoleType userRoleType) {
 		return new BoardDetails(
 				uid,
-				username,
+				
 				password,
 				email,
 				userRoleType
@@ -35,7 +34,7 @@ public class BoardDetails implements UserDetails{
 	public static BoardDetails from(UserDto userDto) {
 		return new BoardDetails(
 				userDto.getUid(),
-				userDto.getUsername(),
+				
 				userDto.getPassword(),
 				userDto.getEmail(),
 				userDto.getUserRoleType()
@@ -43,8 +42,7 @@ public class BoardDetails implements UserDetails{
 	}
 	
 	public UserDto toDto() {
-    	return UserDto.of(uid, 
-    					  username, 
+    	return UserDto.of(uid,
     					  password, 
     					  email, 
     					  userRoleType);
@@ -61,9 +59,11 @@ public class BoardDetails implements UserDetails{
 		public String getPassword() {
 			return password;
 		}
-	
+
 	@Override
 	public String getUsername() {
-		return username;
+		return null;
 	}
+	
+	
 }

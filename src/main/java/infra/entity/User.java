@@ -18,17 +18,16 @@ import lombok.ToString;
 @Entity
 public class User extends AuditingFields {
 	
-	@Id
 	@Column(name = "uid")
-    private Long uid;
-    
-	@Column(length = 20)
-	private String username;
+    private String uid;    
 	
 	@Column(length = 20)
     private String password;
 
     private String email;
+    
+    @Id
+    private Long mid;  // 'mid' 속성 추가
     
     @Column
 	private Long businessNum;
@@ -39,17 +38,16 @@ public class User extends AuditingFields {
     
     protected User() {}
     
-	private User(Long uid, String username, String password, String email, UserRoleType userRoleType, Long businessNum) {
+	private User(String uid, String password, String email, UserRoleType userRoleType, Long businessNum) {
 		this.uid = uid;
-		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.userRoleType = userRoleType;
 		this.businessNum = businessNum;
 	}
 	
-	public static User of(Long userId, String username, String password, String email, UserRoleType userRoleType, Long businessNum) {
-		return new User(userId, username, password, email, userRoleType, businessNum);
+	public static User of(String uid, String password, String email, UserRoleType userRoleType, Long businessNum) {
+		return new User(uid, password, email, userRoleType, businessNum);
 	}
 	
     @Override

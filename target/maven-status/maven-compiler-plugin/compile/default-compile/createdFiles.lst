@@ -1,0 +1,5 @@
+infra/common/utils/UserRoleTypeAttributeConverter.class
+infra/entity/constant/UserRoleType.class
+infra/common/constant/SearchType.class
+infra/StudyRoomReservationApplication.class
+infra/config/JpaConfig.class

@@ -1,6 +1,7 @@
 package infra.service;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import infra.common.constant.SearchType;
 import infra.dto.RoomDto;
+import infra.entity.Room;
 import infra.repository.RoomRepository;
 import infra.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,10 +35,17 @@ public class RoomService {
 	}
 	
 	@Transactional
-    public void updatePost() {
-		
-    	
-    }
+	public void updatRoom(Long mid, String name, Integer maxPeople, Integer price) {
+	    // Room 엔티티 조회
+	    Room room = roomRepository.findByMid(mid)
+	        .orElseThrow(() -> new EntityNotFoundException("Room not found with mid: " + mid));
+	    
+	    // 수정 가능한 필드 업데이트
+	    room.setName(name);
+	    room.setMaxPeople(maxPeople);
+	    room.setPrice(price);
+	    room.setModifiedAt(LocalDateTime.now()); // 수정 시간 업데이트
+	}
 	
     public void deletePost() {
 
@@ -71,7 +81,7 @@ public class RoomService {
 				break;
 			}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + searchType);
+				throw new IllegalArgumentException( " " + searchType);
 		}
 		
 		return null;

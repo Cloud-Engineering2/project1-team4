@@ -1,7 +1,12 @@
 package infra.dto;
 
 import infra.entity.Room;
+import lombok.Getter;
+import lombok.ToString;
 
+
+@Getter
+@ToString
 public class RoomDto {
 	
 	private String name;

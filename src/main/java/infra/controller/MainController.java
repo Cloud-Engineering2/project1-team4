@@ -40,7 +40,7 @@ public class MainController {
 	public String signup(UserRequest userRequest) {
 		UserDto userDto = userRequest.toDto(UserRoleType.ADMIN);
 		userService.registerUser(userDto);
-		return "sign-up";
+		return "guest-sign-up";
 	}
 
 }

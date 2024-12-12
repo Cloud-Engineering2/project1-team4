@@ -21,7 +21,7 @@ public class UserService {
 		
 	}
 	
-	public Optional<UserDto> searchUser(Long uid) {
+	public Optional<UserDto> searchUser(String uid) {
 		return userRepository.findById(uid)
 				.map(UserDto::from);
 	}

@@ -18,7 +18,7 @@ import lombok.ToString;
 @Getter
 @ToString(callSuper = true)
 @Entity
-public class Reservation {
+public class Reservation extends AuditingFields{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,10 +47,6 @@ public class Reservation {
     @Column(name = "total_duration", nullable = false)
     private int totalDuration;
 
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
 
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
 
 }

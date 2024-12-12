@@ -22,11 +22,11 @@ public class RoomController {
 	
 	
 	
-//    @GetMapping
-//    public String getAllRooms(ModelMap model) {
-//        model.addAttribute("rooms", roomService.getAllRooms());  // Assuming `getAllRooms()` retrieves room data
-//        return "room/list";  // JSP or Thymeleaf template to display rooms
-//    }
+    @GetMapping
+    public String getAllRooms(ModelMap model) {
+        model.addAttribute("rooms", roomService.getAllRooms());  // Assuming `getAllRooms()` retrieves room data
+        return "room/list";  // JSP or Thymeleaf template to display rooms
+    }
 
 	
 

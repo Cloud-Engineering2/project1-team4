@@ -25,9 +25,9 @@ public class RoomRequest {
     	return new RoomRequest(name, maxPeople, price, addr1, addr2, addr3, content); 
     }
     
-    public RoomDto toDto(UserDto userDto) {
-    	return RoomDto.of(name, maxPeople, price, addr1, addr2, addr3, content, userDto);
-    }
+//    public RoomDto toDto(UserDto userDto) {
+//    	return RoomDto.of(name, maxPeople, price, addr1, addr2, addr3, content, userDto);
+//    }
 
 	
     

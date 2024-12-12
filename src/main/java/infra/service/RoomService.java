@@ -81,11 +81,11 @@ public class RoomService {
 	
 	
 	
-//	public List<RoomDto> getAllRooms() {
-//	    return roomRepository.findAll().stream()
-//	                         .map(room -> new RoomDto(room))  // RoomDto로 변환
-//	                         .collect(Collectors.toList());
-//	}
+	public List<RoomDto> getAllRooms() {
+	    return roomRepository.findAll().stream()
+	                         .map(room -> new RoomDto(room))  // RoomDto로 변환
+	                         .collect(Collectors.toList());
+	}
 	
 	
 }

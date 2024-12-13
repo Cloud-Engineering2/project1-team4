@@ -1,5 +1,12 @@
 package infra.dto;
 
+import infra.entity.Room;
+import lombok.Getter;
+import lombok.ToString;
+
+
+@Getter
+@ToString
 public class RoomDto {
 	
 	private String name;
@@ -11,22 +18,22 @@ public class RoomDto {
     private String content;
     private UserDto userDto;
     
+    // 기본 생성자 추가
+    public RoomDto() {
+        // 빈 생성자
+    }
 
-	public static RoomDto of(String name, Integer maxPeople, Integer price, String addr1, String addr2, String addr3,
-			String content, UserDto userDto) {
-		return null;
-	}
-	
-	 public RoomDto(String name, Integer maxPeople, Integer price, String addr1, String addr2, String addr3, String content, UserDto userDto) {
-	        this.name = name;
-	        this.maxPeople = maxPeople;
-	        this.price = price;
-	        this.addr1 = addr1;
-	        this.addr2 = addr2;
-	        this.addr3 = addr3;
-	        this.content = content;
-	        this.userDto = userDto;
-	    }
-	 
+ 
+    
+    public RoomDto(Room room) {
+        this.name = room.getName();
+        this.maxPeople = room.getMaxPeople();
+        this.price = room.getPrice();
+        this.addr1 = room.getAddr1();
+        this.addr2 = room.getAddr2();
+        this.addr3 = room.getAddr3();
+        this.content = room.getContent();
+        this.userDto = new UserDto(room.getUser().getUid()); // assuming 'uid' is the user identifier
+    }
 
 }

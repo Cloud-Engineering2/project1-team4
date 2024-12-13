@@ -26,6 +26,7 @@ public class MainController {
 	public String mainPage() {
 		return "forward:/posts";
 	}
+	
 
 	@GetMapping("/guest/signup")
 	public String guestSignupPage() {

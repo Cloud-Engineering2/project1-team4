@@ -27,10 +27,10 @@ public class RoomController {
 	
 	
 	
-	@PutMapping("/{rid}")
-	public ResponseEntity<String> updateRoom(@PathVariable Long rid, @RequestBody RoomDto roomDto) {
+	@PutMapping("/{roomId}")
+	public ResponseEntity<String> updateRoom(@PathVariable Long roomId, @RequestBody RoomDto roomDto) {
 	    // 서비스를 통해 데이터를 수정
-	    ResponseEntity<String> response = roomService.updateRoom(rid, roomDto);
+	    ResponseEntity<String> response = roomService.updateRoom(roomId, roomDto);
 
 	    // 이미 ResponseEntity로 처리되므로 추가적인 로직을 직접 처리할 필요 없음
 	    return response;
@@ -40,8 +40,8 @@ public class RoomController {
 	
 	
 	@DeleteMapping("/{rid}")
-	public ResponseEntity<String> deleteRoom(@PathVariable Long rid) {
-	    ResponseEntity<String> response = roomService.deleteRoom(rid);
+	public ResponseEntity<String> deleteRoom(@PathVariable Long roomId) {
+	    ResponseEntity<String> response = roomService.deleteRoom(roomId);
 	    return response;
 	}
 	

@@ -1,20 +1,16 @@
 package infra.service;
 
-
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import infra.common.constant.SearchType;
 import infra.dto.RoomDto;
-import infra.entity.Room;
 import infra.repository.RoomRepository;
 import infra.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +31,7 @@ public class RoomService {
 	}
 	
 	public ResponseEntity<String> updateRoom(Long rid, RoomDto roomDto) {
-       
+
 		// ID로 방을 찾음
         Optional<Room> optionalRoom = roomRepository.findById(rid);
 
@@ -78,11 +74,7 @@ public class RoomService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
     }
-    
-    
-	
 
-    
    
 	public Page<RoomDto> searchRooms(Pageable pageable) {
 		
@@ -120,7 +112,9 @@ public class RoomService {
 		
 	}
 	
-	
+	public RoomDto getRoom (Long mid) {
+		return  RoomDto.from(roomRepository.findById(mid).orElseThrow());
+    }
 
 	
 	

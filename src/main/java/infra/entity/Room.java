@@ -24,7 +24,7 @@ public class Room extends AuditingFields {
     private Long mid;
 	
 	@ManyToOne
-    @JoinColumn(name = "hid", referencedColumnName = "mid")
+	@JoinColumn(name = "uid")
     private User user;
 	
 	@Setter

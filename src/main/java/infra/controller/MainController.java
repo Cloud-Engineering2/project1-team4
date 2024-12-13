@@ -39,6 +39,7 @@ public class MainController {
 	@PostMapping("/signup")
 	public String signup(UserRequest userRequest) {
 		UserDto userDto = userRequest.toDto(UserRoleType.ADMIN);
+		System.out.println(userDto);
 		userService.registerUser(userDto);
 		return "guest-sign-up";
 	}

@@ -1,16 +1,17 @@
+
 package infra.controller;
 
-import java.util.List;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import infra.dto.RoomDto;
 import infra.service.RoomService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * API
@@ -19,28 +20,21 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RequiredArgsConstructor
 @RequestMapping("/room")
-@Controller
-@Slf4j 
+@RestController
 public class RoomController {
 	
 	private final RoomService roomService;
 	
-  
-	@GetMapping
-    public String getAllRooms(ModelMap model) {
-		List<RoomDto> rooms = roomService.getAllRooms();
-		model.addAttribute("rooms", rooms);  // Assuming `getAllRooms()` retrieves room data
-        log.info("데이터 들어는지 확인 !" +rooms);
-        // 로그로 rooms 내용 확인
-        for (RoomDto room : rooms) {
-            System.out.println(room); // toString() 메서드가 출력됨
-        }  
-		return "room/index";  // JSP or Thymeleaf template to display rooms
-    }
 	
 	
-	
+	@PutMapping("/{rid}")
+	public ResponseEntity<String> updateRoom(@PathVariable Long rid, @RequestBody RoomDto roomDto) {
+	    // 서비스를 통해 데이터를 수정
+	    ResponseEntity<String> response = roomService.updateRoom(rid, roomDto);
 
+	    // 이미 ResponseEntity로 처리되므로 추가적인 로직을 직접 처리할 필요 없음
+	    return response;
+	}
 	
 
 }

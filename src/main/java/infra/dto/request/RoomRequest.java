@@ -17,13 +17,21 @@ public class RoomRequest {
     private String addr2;
     private String addr3;
     private String content;
+    private Boolean isAccepted; // isAccepted 필드를 추가
     
- 
     
     public static RoomRequest of(String name, Integer maxPeople, Integer price, String addr1, String addr2, String addr3,
-			String content) {
-    	return new RoomRequest(name, maxPeople, price, addr1, addr2, addr3, content); 
+			String content, Boolean isAccepted) {
+    	return new RoomRequest(name, maxPeople, price, addr1, addr2, addr3, content,isAccepted); 
     }
+    
+
+
+
+	public RoomDto toDto() {
+		
+		return null;
+	}
     
 //    public RoomDto toDto(UserDto userDto) {
 //    	return RoomDto.of(name, maxPeople, price, addr1, addr2, addr3, content, userDto);

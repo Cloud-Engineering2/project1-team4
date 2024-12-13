@@ -1,12 +1,11 @@
 package infra.service;
 
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import infra.common.constant.SearchType;
@@ -14,7 +13,6 @@ import infra.dto.RoomDto;
 import infra.entity.Room;
 import infra.repository.RoomRepository;
 import infra.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,21 +32,35 @@ public class RoomService {
 
 	}
 	
-	@Transactional
-	public void updatRoom(Long mid, String name, Integer maxPeople, Integer price) {
-	    // Room 엔티티 조회
-	    Room room = roomRepository.findByMid(mid)
-	        .orElseThrow(() -> new EntityNotFoundException("Room not found with mid: " + mid));
-	    
-	    // 수정 가능한 필드 업데이트
-	    room.setName(name);
-	    room.setMaxPeople(maxPeople);
-	    room.setPrice(price);
-	    room.setModifiedAt(LocalDateTime.now()); // 수정 시간 업데이트
-	}
-	
-    public void deletePost() {
+	public ResponseEntity<String> updateRoom(Long rid, RoomDto roomDto) {
+       
+		// ID로 방을 찾음
+        Optional<Room> optionalRoom = roomRepository.findById(rid);
 
+        if (optionalRoom.isPresent()) {
+            Room room = optionalRoom.get();
+            // DTO의 데이터를 엔티티에 반영
+            room.setName(roomDto.getName());
+            room.setMaxPeople(roomDto.getMaxPeople());
+            room.setPrice(roomDto.getPrice());
+            room.setAddr1(roomDto.getAddr1());
+            room.setAddr2(roomDto.getAddr2());
+            room.setAddr3(roomDto.getAddr3());
+            room.setContent(roomDto.getContent());
+
+            // 엔티티 저장
+            roomRepository.save(room);
+            return ResponseEntity.ok("스터디룸 수정이 성공적으로 되었습니다");
+        } else {
+            return ResponseEntity.ok("스터디룸 수정이 실패했습니다");
+        }
+    }
+	
+    // 룸 삭제
+    @Transactional
+    public void deleteRoom(Long mid) {
+        Room room = roomRepository.findById(mid).orElseThrow(() -> new IllegalArgumentException("Room not found"));
+        roomRepository.delete(room);
     }
 
     
@@ -81,7 +93,7 @@ public class RoomService {
 				break;
 			}
 			default:
-				throw new IllegalArgumentException( " " + searchType);
+				throw new IllegalArgumentException("Unexpected value: " + searchType);
 		}
 		
 		return null;
@@ -90,12 +102,7 @@ public class RoomService {
 	}
 	
 	
-	
-	public List<RoomDto> getAllRooms() {
-	    return roomRepository.findAll().stream()
-	                         .map(room -> new RoomDto(room))  // RoomDto로 변환
-	                         .collect(Collectors.toList());
-	}
+
 	
 	
 }

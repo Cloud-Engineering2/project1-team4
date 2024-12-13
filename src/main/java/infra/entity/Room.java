@@ -1,6 +1,5 @@
 package infra.entity;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -25,7 +24,7 @@ public class Room extends AuditingFields {
     private Long mid;
 	
 	@ManyToOne
-    @JoinColumn(name = "hid", referencedColumnName = "mid")
+	@JoinColumn(name = "uid")
     private User user;
 	
 	@Setter
@@ -51,13 +50,13 @@ public class Room extends AuditingFields {
 	
 	@Setter
     private Boolean isAccepted;
-	
-	
+
+    
+    
     protected Room() {}
     
     
-	private Room(Long mid, User user, String name, Integer maxPeople, Integer price, 
-			String addr1, String addr2,
+	private Room(Long mid, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
 			String addr3, String content, Boolean isAccepted) {
 		this.mid = mid;
 		this.user = user;
@@ -69,13 +68,12 @@ public class Room extends AuditingFields {
 		this.addr3 = addr3;
 		this.content = content;
 		this.isAccepted = isAccepted;
-		
 	}
 	
 	
     
     public static Room of(Long mid, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
-			String addr3, String content, Boolean isAccepted, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+			String addr3, String content, Boolean isAccepted) {
     	return new Room(mid, user, name, maxPeople, price, addr1, addr2, addr3, content, isAccepted);
     }
     

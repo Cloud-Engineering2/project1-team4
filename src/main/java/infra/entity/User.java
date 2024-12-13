@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Entity
 public class User extends AuditingFields {
-	
+    @Id
 	@Column(name = "uid")
     private String uid;    
 	
@@ -25,9 +25,7 @@ public class User extends AuditingFields {
     private String password;
 
     private String email;
-    
-    @Id
-    private Long mid;  // 'mid' 속성 추가
+  
     
     @Column
 	private Long businessNum;

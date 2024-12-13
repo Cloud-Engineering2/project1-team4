@@ -18,6 +18,10 @@ public class RoomDto {
     private String content;
     private UserDto userDto;
     
+    // 기본 생성자 추가
+    public RoomDto() {
+        // 빈 생성자
+    }
 
  
     

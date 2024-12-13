@@ -1,14 +1,13 @@
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/StudyRoomReservationApplication.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/common/constant/SearchType.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/common/utils/UserRoleTypeAttributeConverter.java
-/Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/config/JpaConfig.java
-/Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/config/SecurityConfig.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/config/WebConfig.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/controller/AdminController.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/controller/GuestController.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/controller/HostController.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/controller/MainController.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/controller/RoomController.java
+/Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/controller/UserController.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/dto/ReservationDto.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/dto/RoomDto.java
 /Users/jeongsujin/01backend/cloudserver/99_practice/infra-app/project1-team4/src/main/java/infra/dto/UserDto.java

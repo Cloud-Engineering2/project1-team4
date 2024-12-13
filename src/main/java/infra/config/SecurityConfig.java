@@ -25,9 +25,10 @@ public class SecurityConfig {
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(auth -> auth
 												.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-												.requestMatchers("/","/posts","/host/signup","/guest/signup","signup").permitAll()
+												.requestMatchers("/**").permitAll()
 												.anyRequest().authenticated()
 								  )
+			
 			.formLogin(withDefaults())
 			.logout(logout -> logout.logoutSuccessUrl("/"));
 				

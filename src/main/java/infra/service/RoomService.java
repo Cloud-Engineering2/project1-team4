@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import infra.dto.RoomDto;
 import infra.entity.Room;
 import infra.repository.RoomRepository;
 import infra.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,12 +58,29 @@ public class RoomService {
         }
     }
 	
-    // 룸 삭제
-    @Transactional
-    public void deleteRoom(Long mid) {
-        Room room = roomRepository.findById(mid).orElseThrow(() -> new IllegalArgumentException("Room not found"));
-        roomRepository.delete(room);
+	
+	// 방 삭제 메서드
+    public ResponseEntity<String> deleteRoom(Long rid) {
+        try {
+            // Optional로 Room 객체를 찾음
+            Room room = roomRepository.findById(rid)
+                .orElseThrow(() -> new EntityNotFoundException("Room with ID " + rid + " not found."));
+
+            // 해당 Room 삭제
+            roomRepository.delete(room);
+
+            return ResponseEntity.ok(" 스터디룸" + rid + "이 삭제되었습니다 .");
+        } catch (EntityNotFoundException e) {
+            // 해당 방이 없으면 404 오류 반환
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            // 예기치 않은 에러가 발생하면 500 오류 반환
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
     }
+    
+    
+	
 
     
    

@@ -1,8 +1,8 @@
 
 package infra.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +33,15 @@ public class RoomController {
 	    ResponseEntity<String> response = roomService.updateRoom(rid, roomDto);
 
 	    // 이미 ResponseEntity로 처리되므로 추가적인 로직을 직접 처리할 필요 없음
+	    return response;
+	}
+	
+	
+	
+	
+	@DeleteMapping("/{rid}")
+	public ResponseEntity<String> deleteRoom(@PathVariable Long rid) {
+	    ResponseEntity<String> response = roomService.deleteRoom(rid);
 	    return response;
 	}
 	

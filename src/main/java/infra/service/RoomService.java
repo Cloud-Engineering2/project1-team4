@@ -79,6 +79,10 @@ public class RoomService {
 		
 	}
 	
+	public RoomDto getRoom (Long mid) {
+		return  RoomDto.from(roomRepository.findById(mid).orElseThrow());
+    }
+	
 	
 	
 //	public List<RoomDto> getAllRooms() {

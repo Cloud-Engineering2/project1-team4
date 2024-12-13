@@ -1,17 +1,17 @@
 package infra.service;
 
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import infra.common.constant.SearchType;
 import infra.dto.RoomDto;
+import infra.entity.Room;
+import infra.entity.User;
 import infra.repository.RoomRepository;
 import infra.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,20 +26,53 @@ public class RoomService {
 	
 
 	@Transactional
-    public void registerRoom() {
-		
-
+    public RoomDto registerRoom(RoomDto roomDto) {
+		User user = userRepository.findById(roomDto.getUserDto().getUid())
+									.orElseThrow(() -> new EntityNotFoundException("정보가 존재하지 않습니다."));
+		Room room = roomDto.toEntity(user);
+		room = roomRepository.save(room);
+		return RoomDto.from(room);
 	}
 	
 	@Transactional
-    public void updatePost() {
-		
-    	
-    }
+	public Room getRoomByMid(Long mid) {
+		return roomRepository.findById(mid)
+								.orElseThrow(() -> new EntityNotFoundException("정보가 존재하지 않습니다."));
+	}
 	
-    public void deletePost() {
-
+//	@Transactional
+//	public RoomDto getRoomByMid(Long mid) {
+//		Room room = roomRepository.findById(mid)
+//								.orElseThrow(() -> new EntityNotFoundException("정보가 존재하지 않습니다."));
+//		return RoomDto.from(room);
+//	}
+		
+	@Transactional
+    public Room updateRoom(Room updateRoom, Long mid) {
+		Room room = roomRepository.findById(mid)
+									.orElseThrow(() -> new EntityNotFoundException("정보가 존재하지 않습니다"));
+		
+		room.setName(updateRoom.getName());
+		room.setMaxPeople(updateRoom.getMaxPeople());
+		room.setPrice(updateRoom.getPrice());
+		room.setAddr1(updateRoom.getAddr1());
+		room.setAddr2(updateRoom.getAddr2());
+		room.setAddr3(updateRoom.getAddr3());
+		room.setContent(updateRoom.getContent());
+		room.setIsAccepted(updateRoom.getIsAccepted());
+		
+		return room;
     }
+		
+	@Transactional
+    public Room deleteRoomByMid(Long mid) {
+		Room room = roomRepository.findById(mid)
+									.orElseThrow(() -> new EntityNotFoundException("정보가 존재하지 않습니다"));
+		
+		roomRepository.delete(room);
+		return room;
+    }
+
 
     
    

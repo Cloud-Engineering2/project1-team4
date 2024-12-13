@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import infra.dto.UserDto;
 import infra.dto.request.UserRequest;
 import infra.entity.constant.UserRoleType;
+import infra.service.RoomService;
 import infra.service.UserService;
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 
 	private final UserService userService;
+	private final RoomService roomService;
 
 	@GetMapping("/")
 	public String mainPage() {

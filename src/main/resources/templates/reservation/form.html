@@ -17,7 +17,8 @@
       <h1>Post Registration</h1>
     </header>
 
-    <form method="post" th:action="${post} != null ? @{/posts/{pid}/edit (pid=${post.id})} : @{/posts}" id="post-form">
+    <!--<form method="post" th:action="${post} != null ? @{/posts/{pid}/edit (pid=${post.id})} : @{/posts}" id="post-form">-->
+	 <form th:action="@{/room}" method="post">
 	  <div class="row mb-3 justify-content-md-center">
 		<label for="title" class="col-sm-2 col-lg-1 col-form-label text-sm-end">Category</label>
 		<div class="col-sm-8 col-lg-9">

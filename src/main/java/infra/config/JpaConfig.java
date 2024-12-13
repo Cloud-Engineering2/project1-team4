@@ -25,7 +25,7 @@ public class JpaConfig {
 							.map(principal-> {
 								
 								if(principal instanceof BoardDetails) {
-									return ((BoardDetails) principal).getUid();
+									return ((BoardDetails) principal).getUid().toString();
 								}else if(principal instanceof String) {
 									return (String) principal;
 								}

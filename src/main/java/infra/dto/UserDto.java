@@ -22,6 +22,11 @@ public class UserDto {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
     
+    public UserDto(String uid) {
+        this.uid = uid;
+    }
+
+    
     
     public static UserDto of(String uid,  String password, String email, UserRoleType userRoleType) {
     	return UserDto.of(uid, password, email, userRoleType, null, null, null);

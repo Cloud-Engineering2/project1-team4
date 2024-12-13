@@ -42,6 +42,8 @@ local.properties
 
 # sbteclipse plugin
 .target
+.classpath
+target/
 
 # Tern plugin
 .tern-project
@@ -213,3 +215,4 @@ replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,intellij,java
 .DS_Store
+target/

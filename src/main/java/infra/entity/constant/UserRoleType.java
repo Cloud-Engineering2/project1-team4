@@ -1,3 +1,4 @@
+
 package infra.entity.constant;
 
 import java.util.Arrays;

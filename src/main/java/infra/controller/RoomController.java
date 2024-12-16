@@ -23,9 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class RoomController {
 	
-	private final RoomService roomService;
-	
-	
+	private final RoomService roomService;	
 	
 	@PutMapping("/{roomId}")
 	public ResponseEntity<String> updateRoom(@PathVariable Long roomId, @RequestBody RoomDto roomDto) {
@@ -35,9 +33,6 @@ public class RoomController {
 	    // 이미 ResponseEntity로 처리되므로 추가적인 로직을 직접 처리할 필요 없음
 	    return response;
 	}
-	
-	
-	
 	
 	@DeleteMapping("/{rid}")
 	public ResponseEntity<String> deleteRoom(@PathVariable Long roomId) {

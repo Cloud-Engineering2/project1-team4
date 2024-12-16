@@ -1,8 +1,6 @@
 package infra.service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Service;
 import infra.common.constant.SearchType;
 import infra.dto.RoomDto;
 import infra.entity.Room;
+import infra.entity.User;
 import infra.repository.RoomRepository;
 import infra.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -30,10 +29,15 @@ public class RoomService {
 	
 
 	@Transactional
-    public void registerRoom() {
-		
+    public void registerRoom(RoomDto roomDto) {
+        User user = userRepository.findById(roomDto.getUserDto().getUid())
+        		.orElseThrow(() -> new RuntimeException("해당 사용자가 존재하지 않습니다."));
 
-	}
+        Room room = roomDto.toEntity(user);
+
+        roomRepository.save(room);
+    }
+
 	
 	public ResponseEntity<String> updateRoom(Long rid, RoomDto roomDto) {
 

@@ -1,6 +1,7 @@
 package infra.dto;
 
 import infra.entity.Room;
+import infra.entity.User;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -9,6 +10,7 @@ import lombok.ToString;
 @ToString
 public class RoomDto {
 	
+	private Long mid;
 	private Long id;
 	private String name;
     private Integer maxPeople;
@@ -18,6 +20,7 @@ public class RoomDto {
     private String addr3;
     private String content;
     private UserDto userDto;
+    private Boolean isAccepted;
     
     // 기본 생성자 추가
     public RoomDto() {
@@ -76,5 +79,17 @@ public class RoomDto {
         this.userDto = new UserDto(room.getUser().getUid()); // assuming 'uid' is the user identifier
     }
 
+    public Room toEntity(User user) {
+        return Room.builder()
+                .user(user)
+                .name(this.name)
+                .maxPeople(this.maxPeople)
+                .price(this.price)
+                .addr1(this.addr1)
+                .addr2(this.addr2)
+                .addr3(this.addr3)
+                .content(this.content)
+                .build();
+    }
 
 }

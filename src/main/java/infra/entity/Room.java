@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ import lombok.ToString;
 @Getter
 @ToString(callSuper = true)
 @Entity
+@Builder
 public class Room extends AuditingFields {
 	
 	@Id
@@ -74,7 +76,18 @@ public class Room extends AuditingFields {
     
     public static Room of(Long mid, User user, String name, Integer maxPeople, Integer price, String addr1, String addr2,
 			String addr3, String content, Boolean isAccepted) {
-    	return new Room(mid, user, name, maxPeople, price, addr1, addr2, addr3, content, isAccepted);
+        Room room = new Room();
+        room.mid = mid;
+        room.user = user;
+        room.name = name;
+        room.maxPeople = maxPeople;
+        room.price = price;
+        room.addr1 = addr1;
+        room.addr2 = addr2;
+        room.addr3 = addr3;
+        room.content = content;
+        room.isAccepted = isAccepted;
+        return room;
     }
     
     

@@ -1,5 +1,6 @@
 package infra.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import infra.dto.RoomDto;
+import infra.entity.Room;
 import infra.service.RoomService;
 import lombok.RequiredArgsConstructor;
 
@@ -25,9 +27,9 @@ public class HostController {
 	
 
     @PostMapping("/room")
-    public ResponseEntity<String> registerRoom(@RequestBody RoomDto roomDto) {
-        roomService.registerRoom(roomDto);
-        return ResponseEntity.ok("방이 성공적으로 등록되었습니다!");
+    public ResponseEntity<RoomDto> registerRoom(@RequestBody RoomDto roomDto) {
+       Room room = roomService.registerRoom(roomDto);
+        return ResponseEntity.status(HttpStatus.OK).body(RoomDto.from(room));
     }
     
 }

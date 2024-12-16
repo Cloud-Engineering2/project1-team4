@@ -29,13 +29,14 @@ public class RoomService {
 	
 
 	@Transactional
-    public void registerRoom(RoomDto roomDto) {
+    public Room registerRoom(RoomDto roomDto) {
         User user = userRepository.findById(roomDto.getUserDto().getUid())
         		.orElseThrow(() -> new RuntimeException("해당 사용자가 존재하지 않습니다."));
 
         Room room = roomDto.toEntity(user);
 
         roomRepository.save(room);
+        return room;
     }
 
 	
